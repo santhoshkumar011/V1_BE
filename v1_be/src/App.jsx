@@ -28,11 +28,14 @@ const App = () => {
     submission_datetime: ''
   });
 
+  // API base URL
+  const API_BASE_URL = 'https://v1-be.onrender.com';
+
   // Fetch enquiries from the server
   const fetchEnquiries = async () => {
     setLoading(true);
     try {
-      let url = 'http://localhost:5000/api/admin/enquiries';
+      let url = `${API_BASE_URL}/api/admin/enquiries`;
       
       // Add query parameters for sorting and filtering
       const params = new URLSearchParams();
@@ -89,7 +92,7 @@ const App = () => {
   // Handle status toggle (contacted, interested, etc.)
   const handleStatusUpdate = async (id, field, value) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/enquiries/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/enquiries/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
@@ -118,7 +121,7 @@ const App = () => {
     }
     
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/enquiries/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/enquiries/${id}`, {
         method: 'DELETE'
       });
       
@@ -154,7 +157,7 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/enquiries/${currentEnquiry.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/enquiries/${currentEnquiry.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
